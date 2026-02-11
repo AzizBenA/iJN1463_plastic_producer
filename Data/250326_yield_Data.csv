@@ -1,0 +1,5 @@
+Monomer Source,Growth (h-1),Biomass Yield (gDW Biomass /mmol substrate),Acetyl-CoA Yield (gDW Biomass /mmol substrate),(R)-3-Hydroxybutanoate Yield (gDW Biomass /mmol substrate),Substrate uptake flux (mmol substrate/gDW/h),O2 uptake flux (mmol substrate/gDW/h)
+SK_14btdl_c,0.502633486,0.083772248,0.313724806,0,6,11.92353081
+SK_etheglycol_c,0.168207987,0.028034665,0.250890176,0,6,7.946688683
+SK_terepa_c,0.526569382,0.087761564,1.117184257,0,6,22.91984883
+SK_adpac_c,0.586959937,0.097826656,1.057527356,0,6,14.38754706
