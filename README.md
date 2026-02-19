@@ -71,8 +71,6 @@
 ### <code>250325_iJN1463_updated_4</code> — Balancing complete + utilization note
 <ul>
   <li><b>Balancing status:</b> all reactions are balanced</li>
-  <li><b>Note:</b> the model is not using <code>(R)-3-Hydroxybutanoate</code>; “you need Hao” (pending follow-up)</li>
-</ul>
 
 <hr/>
 
