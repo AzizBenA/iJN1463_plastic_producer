@@ -3,6 +3,7 @@
 # iJN1463 Updates — Plastics / C2 Platform (Project Log)
 
 
+
 <p align="center">
   <b>Repository note:</b> This README tracks incremental edits to <code>iJN1463</code> (updated variants) to support
   C2 platform constraints and PET/PU/PBAT-derived monomer assimilation (EG, TA, AA, BDO), with curated reactions,
@@ -28,10 +29,6 @@
 ### <code>iJN1463_updated_1</code> — C2 platform integration
 <ul>
   <li><b>C2 platform present</b></li>
-  <li><code>ACS</code> bounds set to zero</li>
-  <li><code>ALDD2y</code>, <code>ALCD2x</code> bounds set to zero</li>
-  <li><code>ACPH</code> created: acetate phosphorylation</li>
-  <li><code>3OXCOAT</code> bounds set to zero</li>
   <li>New reactions: <code>ADPCOAR</code>, <code>ADPCOAH</code></li>
   <li>New metabolites: adipic acid <code>adpac_c</code>, adipoyl-CoA <code>adpcoa_c</code></li>
 </ul>
@@ -80,6 +77,4 @@
 
 ```python
 model.reactions.get_by_id('SUCOAS').bounds = (-1000.0, 0.0)
-model.reactions.get_by_id('PPC').bounds    = (-0.0, 1000.0)
-model.reactions.get_by_id('PC').bounds     = (-0.0, 0.0)
-model.reactions.get_by_id('THRS').bounds   = (-0.0, 0.0)
+model.reactions.get_by_id('THRA').bounds   = (-0.0, 0.0)
