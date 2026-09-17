@@ -1,80 +1,89 @@
-# IJN1436 Plastic Producer
+# iJN1463: metabolic modeling of mixed-plastic upcycling
 
-# iJN1463 Updates — Plastics / C2 Platform (Project Log)
+Genome-scale metabolic models and flux balance analysis of plastic-derived monomer assimilation and (R)-3-hydroxybutyrate (R-3HB) production in *Pseudomonas putida* KT2440.
 
+## Associated publication
 
+This work was published as a **bioRxiv preprint**:
 
-<p align="center">
-  <b>Repository note:</b> This README tracks incremental edits to <code>iJN1463</code> (updated variants) to support
-  C2 platform constraints and PET/PU/PBAT-derived monomer assimilation (EG, TA, AA, BDO), with curated reactions,
-  bounds edits, and balancing status.
-</p>
+> Meng, H., et al. (2026). **Engineering Pseudomonas putida KT2440 for open-loop upcycling of mixed plastics.** *bioRxiv*, version 1, posted 25 March 2026. [doi:10.64898/2026.03.23.713816](https://doi.org/10.64898/2026.03.23.713816).
 
-<hr/>
+The [preprint](https://www.biorxiv.org/content/10.64898/2026.03.23.713816v1.abstract) identifies this repository as the source of the models and code used in its computational analysis. It describes engineering *P. putida* for plastic-monomer utilization and R-3HB production. The repository provides the metabolic modeling component; experimental methods and strain characterization are described in the manuscript. The cited version is a preprint and has not been certified by peer review.
 
-## 📌 Quick summary
+## Scientific scope
 
-<ul>
-  <li><b>C2 platform integration:</b> key bounds constrained (e.g., <code>ACS</code>) and new acetate phosphorylation reaction (<code>ACPH</code>).</li>
-  <li><b>PET branch:</b> terephthalate metabolites + dioxygenase/dehydrogenase reactions added.</li>
-  <li><b>PU/PBAT branch:</b> ethylene glycol, BDO, 4-hydroxybutyrate path added; reactions balanced.</li>
-  <li><b>Yield “fix” constraints:</b> selected reverse-TCA and threonine-to-acetyl-CoA routes must be blocked (plasmid-free strain context).</li>
-  <li><b>Open item:</b> plastics “polymer” metabolites were added but still need proper <b>charge annotation</b>.</li>
-</ul>
+The models extend the iJN1463 reconstruction with pathways connecting polyester-derived monomers to central carbon metabolism. The analysis notebook uses flux balance analysis (FBA) to maximize R-3HB production and examine how monomer composition affects theoretical yield.
 
-<hr/>
+| Abbreviation | Monomer | Uptake reaction in the notebook | Carbon atoms per molecule |
+| --- | --- | --- | ---: |
+| EG | Ethylene glycol | `SK_etheglycol_c` | 2 |
+| TA | Terephthalic acid | `SK_terepa_c` | 8 |
+| AA | Adipic acid | `SK_adpac_c` | 6 |
+| BDO | 1,4-Butanediol | `SK_14btdl_c` | 4 |
 
-## 🧱 Model variants and change log
+Mixture simulations combine these monomers using compositions assigned to polyethylene terephthalate (PET), polyester-polyurethane (PU) soft segments, and poly(butylene adipate-co-terephthalate) (PBAT). These compositions are modeling assumptions for the represented materials, rather than universal polymer formulations. The notebook focuses on the four monomers listed above.
 
-### <code>iJN1463_updated_1</code> — C2 platform integration
-<ul>
-  <li><b>C2 platform present</b></li>
-  <li>New reactions: <code>ADPCOAR</code>, <code>ADPCOAH</code></li>
-  <li>New metabolites: adipic acid <code>adpac_c</code>, adipoyl-CoA <code>adpcoa_c</code></li>
-</ul>
+## Repository organization
 
-<hr/>
+| Resource | Contents |
+| --- | --- |
+| [Models/](Models/) | Six dated SBML model snapshots, from `updated_1` to `updated_6`. |
+| [Scripts/Hao_yield_calculation.ipynb](Scripts/Hao_yield_calculation.ipynb) | Interactive model inspection, constraint changes, yield calculations, and polymer-mixture sweeps. |
+| [Scripts/jupyter_utils.py](Scripts/jupyter_utils.py) | Helper functions for model inspection and tabular exports. |
+| [Data/250326_yield_Data.csv](Data/250326_yield_Data.csv) | Historical single-monomer growth, yield, and uptake summary. |
+| [Results/251218_polymer_mixture_yield_sweep_half.xlsx](Results/251218_polymer_mixture_yield_sweep_half.xlsx) | Archived polymer-mixture sweep results. |
+| [Methods and reproducibility](docs/methods.md) | Notebook workflow, yield definitions, and interpretation of saved outputs. |
+| [Model history](docs/model-history.md) | Snapshot provenance, reaction changes, and model-specific constraints. |
+| [CITATION.bib](CITATION.bib) | Bibliographic record for the associated preprint. |
 
-### <code>250211_iJN1463_updated_2</code> — PET monomers: terephthalate path
-<ul>
-  <li>Added metabolite: terephthalic acid <code>terepa_c</code></li>
-  <li>Added metabolite: 1,2-dihydroxy-1,2-dihydroterephthalate <code>12di12ditere_c</code></li>
-  <li>Added reaction: <code>TEREDEOXY</code> (Terephthalate 1,2-dioxygenase)</li>
-  <li>Added reaction: <code>TEREDEHYD</code> (Terephthalate 1,2-dehydrogenase)</li>
-</ul>
+## Getting started
 
-<hr/>
+### Select a model
 
-### <code>250324_iJN1463_updated_3</code> — PU/PBAT monomers: EG & BDO module + 4HB branch
-<ul>
-  <li>Added metabolite: Ethylene glycol <code>etheglycol_c</code></li>
-  <li>Added reaction: <code>ETHYGLYCHYD</code> (Ethylene glycol dehydrogenase)</li>
+The notebook loads [250709_iJN1463_updated_5.sbml](Models/250709_iJN1463_updated_5.sbml). The newest archived snapshot is [260223_iJN1463_updated_6.sbml](Models/260223_iJN1463_updated_6.sbml). These snapshots have different reaction bounds; specify the exact filename when reporting an analysis. See the [model history](docs/model-history.md) before substituting one for the other.
 
-  <li>Added metabolite: Butane-1,4-diol <code>14btdl_c</code></li>
-  <li>Added metabolite: 4-hydroxybutyraldehyde <code>4hbutald_c</code></li>
-  <li>Added reaction: <code>14BUTADEH</code> (1,4-butanediol dehydrogenase)</li>
+### Prepare the environment
 
-  <li>Added metabolite: 4-hydroxybutyrate <code>h4but_c</code></li>
-  <li>Added reaction: <code>4HYDBUDEH</code> (4-hydroxybutyraldehyde dehydrogenase)</li>
-  <li>Added reaction: <code>4HYDBUSUCDEH</code> (4-hydroxybutyrate → succinic semialdehyde)</li>
+The notebook records Python **3.11.7**. The following packages cover its imports and Excel exports; the repository does not include a pinned environment or dependency lockfile.
 
-  <li>Added reaction: <code>AACOA3HYD</code> (Acetoacetyl-CoA → (R)-3-hydroxybutyryl-CoA)</li>
+```bash
+python -m venv .venv
+# Activate the environment before installing packages:
+# Windows PowerShell: .\.venv\Scripts\Activate.ps1
+# Linux/macOS: source .venv/bin/activate
+python -m pip install cobra pandas numpy requests openpyxl jupyterlab ipykernel
+```
 
-  <li><code>AACOAT</code>, <code>BDH</code> bounds set to zero</li>
-  <li><b>Balancing status:</b> all reactions mass/charge balanced except (see next version)</li>
-</ul>
+### Open the notebook
 
-<hr/>
+From the repository root, launch Jupyter in `Scripts/` so that the local helper import and relative model paths resolve correctly:
 
-### <code>250325_iJN1463_updated_4</code> — Balancing complete + utilization note
-<ul>
-  <li><b>Balancing status:</b> all reactions are balanced</li>
+```bash
+cd Scripts
+python -m jupyterlab Hao_yield_calculation.ipynb
+```
 
-<hr/>
+Use a kernel from the environment created above. Before executing the notebook, follow the [execution guide](docs/methods.md#notebook-execution): an intermediate cell writes directly to the archived `updated_6` model, and later cells represent separate historical sweep implementations.
 
-### <code>250709_iJN1463_updated_5</code> — Bounds edits / KO set for expected yield
-<p>Knockouts / constraints applied to match the “right yield” behavior:</p>
+To inspect a model independently, run this Python example from the repository root:
 
 ```python
-model.reactions.get_by_id('SUCOAS').bounds = (-1000.0, 0.0)
-model.reactions.get_by_id('THRA').bounds   = (-0.0, 0.0)
+from pathlib import Path
+from cobra.io import read_sbml_model
+
+model_path = Path("Models") / "260223_iJN1463_updated_6.sbml"
+model = read_sbml_model(str(model_path))
+print(model.id)
+print(f"{len(model.reactions)} reactions; {len(model.metabolites)} metabolites")
+print(model.objective.expression)
+```
+
+## Interpretation and reproducibility
+
+FBA results describe feasible steady-state fluxes under the selected objective and reaction bounds. Product-maximizing solutions are theoretical predictions and should be interpreted separately from experimental titers, growth dynamics, and substrate-consumption order.
+
+The notebook is an interactive research record. Its model state depends on execution order, and some historical output labels differ from the quantities calculated. The [methods guide](docs/methods.md) documents these details, including the distinction between carbon yield and molar product yield. For reuse, record the repository revision, SBML filename, solver and package versions, objective, uptake limits, and any additional constraints.
+
+## Citation
+
+Please cite the [associated preprint](https://doi.org/10.64898/2026.03.23.713816) when using these models or analyses. Import [CITATION.bib](CITATION.bib) into a reference manager for the full author list and publication metadata. Report the repository revision and model snapshot alongside the citation to identify the computational materials used.
