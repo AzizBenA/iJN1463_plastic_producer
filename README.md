@@ -4,11 +4,9 @@ Genome-scale metabolic models and flux balance analysis of plastic-derived monom
 
 ## Associated publication
 
-This work was published as a **bioRxiv preprint**:
+This work was published :
 
-> Meng, H., et al. (2026). **Engineering Pseudomonas putida KT2440 for open-loop upcycling of mixed plastics.** *bioRxiv*, version 1, posted 25 March 2026. [doi:10.64898/2026.03.23.713816](https://doi.org/10.64898/2026.03.23.713816).
-
-The [preprint](https://www.biorxiv.org/content/10.64898/2026.03.23.713816v1.abstract) identifies this repository as the source of the models and code used in its computational analysis. It describes engineering *P. putida* for plastic-monomer utilization and R-3HB production. The repository provides the metabolic modeling component; experimental methods and strain characterization are described in the manuscript.
+> Meng, H., et al. (2026). **Engineering Pseudomonas putida KT2440 for open-loop upcycling of mixed plastics. Trends in Biotechnology. [10.1016/j.tibtech.2026.08.017].
 
 ## Scientific scope
 
