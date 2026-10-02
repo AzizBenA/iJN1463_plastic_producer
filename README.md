@@ -84,4 +84,4 @@ The notebook is an interactive research record. Its model state depends on execu
 
 ## Citation
 
-Please cite the [associated preprint](https://doi.org/10.64898/2026.03.23.713816) when using these models or analyses. Import [CITATION.bib](CITATION.bib) into a reference manager for the full author list and publication metadata. Report the repository revision and model snapshot alongside the citation to identify the computational materials used.
+Please cite the [associated paper](https://doi.org/10.1016/j.tibtech.2026.08.017) when using these models or analyses. 
